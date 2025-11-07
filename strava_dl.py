@@ -54,7 +54,6 @@ print(f"Number of classes: {len(df[target_col].unique())}")
 print("Class distribution:")
 print(df[target_col].value_counts())
 
-
 df = df.dropna(axis=0, how='all')            # Drop empty rows
 df = df.dropna(axis=1, how='all')            # Drop empty columns
 df = df.loc[:, ~df.columns.duplicated()]     # Remove duplicate columns
