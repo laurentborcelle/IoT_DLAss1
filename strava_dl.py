@@ -34,7 +34,7 @@ def set_seed(seed=42):
 set_seed(42)
 
 # Load dataset
-csv_file = "loisa_dataset.csv"
+csv_file = "personal_dataset.csv"
 df = pd.read_csv(csv_file)
 
 print(f"Loaded CSV: {csv_file} -> shape: {df.shape}")
@@ -54,7 +54,7 @@ print(f"Number of classes: {len(df[target_col].unique())}")
 print("Class distribution:")
 print(df[target_col].value_counts())
 
-# Cleaning dataset
+
 df = df.dropna(axis=0, how='all')            # Drop empty rows
 df = df.dropna(axis=1, how='all')            # Drop empty columns
 df = df.loc[:, ~df.columns.duplicated()]     # Remove duplicate columns
@@ -79,7 +79,7 @@ if not num_cols:
 print(f"Numeric columns: {num_cols}")
 print(f"Categorical columns: {cat_cols}")
 
-# Encode target variable
+# Target variable
 label_encoder = LabelEncoder()
 y_encoded = label_encoder.fit_transform(y)
 
@@ -139,7 +139,7 @@ early_stop = callbacks.EarlyStopping(
     verbose=1
 )
 
-print("Starting training...")
+print("\nStarting training...\n")
 history = model.fit(
     X_train, y_train,
     epochs=100,
@@ -156,17 +156,17 @@ print("Training completed.")
 y_pred_proba = model.predict(X_test, verbose=0)
 y_pred = np.argmax(y_pred_proba, axis=1)
 
-print("\n" + "="*50)
+print("\n")
 print("EVALUATION RESULTS")
-print("="*50)
-print("\nClassification Report:\n")
-print(classification_report(y_test, y_pred, target_names=label_encoder.classes_))
+print("\n")
+
 
 accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred, average='weighted', zero_division=0)
 recall = recall_score(y_test, y_pred, average='weighted', zero_division=0)
 f1 = f1_score(y_test, y_pred, average='weighted', zero_division=0)
 
+print("\nClassification Report:\n", classification_report(y_test, y_pred, target_names=label_encoder.classes_))
 print(f"Accuracy: {accuracy:.3f}")
 print(f"Precision: {precision:.3f}")
 print(f"Recall: {recall:.3f}")
@@ -216,7 +216,6 @@ plt.show()
 # reusable prediction system that maintains consistency between training and inference.
 model_filename = "strava_activity_classify.keras"
 model.save(model_filename)
-print(f"Model saved as: {model_filename}")
 
 joblib.dump(preprocessor, "preprocessor.pkl")
 joblib.dump(label_encoder, "label_encoder.pkl")
