@@ -34,7 +34,7 @@ def set_seed(seed=42):
 set_seed(42)
 
 # Load dataset
-csv_file = "personal_dataset.csv"
+csv_file = "strava_activities_dataset.csv"
 df = pd.read_csv(csv_file)
 
 print(f"Loaded CSV: {csv_file} -> shape: {df.shape}")
