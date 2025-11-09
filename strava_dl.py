@@ -201,7 +201,7 @@ plt.show()
 
 # Confusion matrix heatmap
 plt.figure(figsize=(8, 6))
-sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+sns.heatmap(cm, annot=True, fmt='d', cmap='BuPu',
             xticklabels=label_encoder.classes_,
             yticklabels=label_encoder.classes_)
 plt.title("Confusion Matrix")
