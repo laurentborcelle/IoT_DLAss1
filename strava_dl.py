@@ -398,4 +398,4 @@ joblib.dump(label_encoder, "label_encoder.pkl")
 print("\nPreprocessor and Label Encoder saved.")
 
 print("\nCompleted all tasks successfully.")
-print(f"\nFinal model accuracy: {accuracy:.3f}\n")
+print(f"\nFinal model accuracy: {accuracy * 100:.2f}%\n")
